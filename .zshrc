@@ -1,3 +1,4 @@
+setopt IGNORE_EOF
 # alias
 alias vi='vim'
 alias vimrc='vi ~/.vimrc'
@@ -9,15 +10,19 @@ alias node6='nvm run --silent 6.10'
 
 export cdf='ahsanint@cdf.toronto.edu'
 alias mosh='mosh --server="LD_LIBRARY_PATH=~/mosh/lib LANG=C.UTF-8 ~/mosh/bin/mosh-server" $cdf'
+# alias lab='ssh -X auni@zeus.dgp.toronto.edu -t "ssh -X auni@gbarill.abyss.dgp.sandbox -t \"tmux attach\""'
+# alias labc='ssh -X auni@zeus.dgp.toronto.edu -t "ssh -X auni@gbarill.abyss.dgp.sandbox"'
+
+azurehostold='class_test@52.179.97.177'
+azurehost='auni@52.173.76.6'
+alias azure='ssh $azurehost'
+#  pw: CSC2604_test
+
+alias newcmake='(mkdir build && cd build && cmake ../ && make -j8)'
 
 search() {
   args=("$@")
   grep -nr --color=always ${args} --exclude-dir='tmp' --exclude-dir='node_modules' --exclude-dir='log' --exclude-dir='.git' -I .
-}
-
-detar() {
-  args=("$1")
-  gunzip -c ${args} | tar xopf - && rm ${args}
 }
 
 # Base16 Shell
@@ -30,17 +35,17 @@ ZSH_THEME=kardan
 plugins=(git vi-mode)
 source $ZSH/oh-my-zsh.sh
 
-# nvm
-export NODE_PATH=$NODE_PATH:./src
-export NVM_DIR="/Users/Auni/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # brew
 export PATH="/usr/local/bin:$PATH"
 export GNUTERM=x11
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export zeus="auni@zeus@dgp.toronto.edu"
-export sandbox="gbarill.abyss.dgp.sandbox"
+# export zeus="auni@zeus@dgp.toronto.edu"
+# export sandbox="gbarill.abyss.dgp.sandbox"
+# export HOMEBREW_GITHUB_API_TOKEN="fad576b0aeffb2f5bdc9d02688c86dd18ebbb1c4"
+# export CXX=/usr/local/opt/llvm/bin/clang++
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+

@@ -1,10 +1,19 @@
 " plugins
 call plug#begin('~/.vim/plugged')
+  " vital
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'scrooloose/syntastic'
   Plug 'chriskempson/base16-vim'
+
+  " nice
+  Plug 'junegunn/vim-easy-align'
   Plug 'tpope/vim-fugitive'
+  Plug 'ajh17/VimCompletesMe'
+
+  " program-specific
   Plug 'othree/yajs.vim'
+  Plug 'wlangstroth/vim-racket'
+  Plug 'itchyny/vim-haskell-indent'
 call plug#end()
 
 " settings
@@ -13,16 +22,17 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-filetype plugin indent on
+" filetype plugin indent on
 set tabstop=2
+set softtabstop=2
 set expandtab
 set shiftwidth=2
 set ignorecase
-set pastetoggle=<F2>
 set ruler
 set nu
 autocmd BufEnter * silent! lcd %:p:h "fancy autochdir
 set shell=/bin/zsh
+set backupdir=~/Workspace/.vim
 
 " ctrlP
 set wildignore=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/dist/* 
@@ -56,7 +66,14 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
+let g:syntastic_python_checkers = ['python']
 let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+
+let g:syntastic_cpp_checkers = ['gcc']
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+let g:syntastic_enable_racket_racket_checker = 1
 
 " netrw
 let g:netrw_liststyle = 0
@@ -77,7 +94,8 @@ map <Leader>d :echo expand('%:p')<CR>
 map <Leader>h :tabp<CR>
 map <Leader>l :tabn<CR>
 map <Leader>n :lne<CR>
-map <Leader>w :w<CR>:redraw!<CR>
+map <Leader>w :w!<CR>
+" map <Leader>w :w<CR>:redraw!<CR>
 map <Leader>q :q<CR>
 map <Leader>R :redraw!<CR>
 map <Leader>o :o .<CR>
@@ -93,12 +111,6 @@ map <Leader>0 :tabm 0<CR>
 map <Leader># :b#<CR>
 map <Leader>` :b#<CR>
 map <Leader>py :write !python<CR>
-
-" quickfix
-map <Leader>gg :Ggrep 
-map <Leader>co :copen<CR>
-map <Leader>cn :cnext<CR>
-map <Leader>cp :cprevious<CR>
 
 " vim-plugged
 map <Leader>PI :PlugInstall<CR>
@@ -118,3 +130,7 @@ map <Leader>ML <C-w>L
 
 map <Leader>pj :w !python<CR>
 map <Leader>PJ :w !python<CR><CR>
+
+" easy-align
+xmap EA <Plug>(EasyAlign)
+nmap EA <Plug>(EasyAlign)
