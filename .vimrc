@@ -1,19 +1,10 @@
 " plugins
 call plug#begin('~/.vim/plugged')
   " vital
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'scrooloose/syntastic'
   Plug 'chriskempson/base16-vim'
 
   " nice
   Plug 'junegunn/vim-easy-align'
-  Plug 'tpope/vim-fugitive'
-  Plug 'ajh17/VimCompletesMe'
-
-  " program-specific
-  Plug 'othree/yajs.vim'
-  Plug 'wlangstroth/vim-racket'
-  Plug 'itchyny/vim-haskell-indent'
 call plug#end()
 
 " settings
@@ -33,47 +24,6 @@ set nu
 autocmd BufEnter * silent! lcd %:p:h "fancy autochdir
 set shell=/bin/zsh
 set backupdir=~/Workspace/.vim
-
-" ctrlP
-set wildignore=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/dist/* 
-let g:ctrlp_use_caching = 1
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<cr>'],
-    \ 'AcceptSelection("t")': ['<c-t>'],
-    \ 'AcceptSelection("h")': ['<c-x>', '<c-s>'],
-    \ 'AcceptSelection("v")': ['<c-v>'],
-    \ }
-
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_loc_list_height = 3
-
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-
-let g:syntastic_python_checkers = ['python']
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
-
-let g:syntastic_cpp_checkers = ['gcc']
-let g:syntastic_cpp_compiler = "g++"
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-
-let g:syntastic_enable_racket_racket_checker = 1
 
 " netrw
 let g:netrw_liststyle = 0
