@@ -23,7 +23,7 @@ set ruler
 set nu
 autocmd BufEnter * silent! lcd %:p:h "fancy autochdir
 set shell=/bin/zsh
-set backupdir=~/Workspace/.vim
+set backupdir=~/.vim/backups
 
 " netrw
 let g:netrw_liststyle = 0
